@@ -1,0 +1,55 @@
+*altfile-lualine.txt*                      alternate (#) buffer lualine plugin
+
+==============================================================================
+Table of Contents                          *altfile-lualine-table-of-contents*
+
+1. altfile-lualine.nvim                                 |altfile-lualine.nvim|
+  - Usage                                              |altfile-lualine-usage|
+  - Customization                              |altfile-lualine-customization|
+
+==============================================================================
+1. altfile-lualine.nvim                                 *altfile-lualine.nvim*
+
+A lualine plugin to show the current alternate (`#`) buffer.
+
+                                                       *altfile-lualine-usage*
+
+>
+  lualine.setup({
+    tabline = {
+      lualine_a = { { 'tabs', mode = 2, use_mode_colors = true } },
+      lualine_x = { { 'altfile', path = 1, symbols = { separator = '󰘵 ' } } },
+      lualine_z = { { 'filename', path = 1 } },
+    },
+  })
+<
+
+                                               *altfile-lualine-configuration*
+
+>
+  sections = {
+    lualine_a = {
+      {
+	'altfile',
+	file_status = true,      -- Displays file status (readonly, modified)
+	newfile_status = false,  -- Display new file status (not written yet)
+	path = 0,                -- 0: Just the filename
+				 -- 1: Relative path
+				 -- 2: Absolute path
+				 -- 3: Absolute path, with tilde as $HOME
+				 -- 4: Filename and parent dir (with tilde)
+
+	shorting_target = 40,    -- Shortens path to leave 40 spaces in window
+	symbols = {
+	  separator = '^',       -- Suffix to separate from filename section
+	  modified = '[+]',      -- Text to show when the file is modified
+	  readonly = '[-]',      -- Text to show when the file is readonly
+	  unnamed = '[No Name]', -- Text to show for unnamed buffers
+	  newfile = '[New]',     -- Text to show for unwritten files
+	}
+      }
+    }
+  }
+<
+
+vim:tw=78:ts=8:noet:ft=help:norl:
